@@ -183,7 +183,7 @@ function CRC16( pdata, datalen)
     end 
   end 
 
-  return  BitOperationOR(MoveBit('L',CRC16Hi,8)CRC16Hi , CRC16Lo)
+  return  BitOperationOR(MoveBit('L',CRC16Hi,8) , CRC16Lo)
 end
 
 
