@@ -54,37 +54,6 @@ function MoveBit( dir , data , num )
 end
 
 
-function BitOperationOR( a , b )
-  local res = 0
-
-  for i=8,1,-1
-    do
-    res = MoveBit('L',res,1)
-
-    t1 = MoveBit('R',a,i-1)
-    t2 = MoveBit('R',a,i)
-    t2 = MoveBit('L',t2,1)
-    aa = t1 - t2    
-
-    t1 = MoveBit('R',b,i-1)
-    t2 = MoveBit('R',b,i)
-    t2 = MoveBit('L',t2,1)
-    bb = t1 - t2    
-
-    if( ( aa==0 ) and ( bb==0) )then
-      res = res + 0
-      --print(res)
-      print(aa..'&'..bb..'->'..'0')
-    else
-      res = res + 1
-      print(aa..'&'..bb..'->'..'1')
-    end
-  end
-  --print("end of and")
-  return res
-end
-
-
 function BitOperationAND( a , b )
   local res = 0
 
@@ -135,13 +104,34 @@ function BitOperationOR( a , b )
     if( ( aa==0 ) and ( bb==0) )then
       res = res + 0
       --print(res)
-      --print(aa..'&'..bb..'->'..'1')
+      print(aa..'&'..bb..'->'..'0')
     else
       res = res + 1
-      --print(aa..'&'..bb..'->'..'0')
+      print(aa..'&'..bb..'->'..'1')
     end
   end
   --print("end of and")
+  return res
+end
+
+
+function BitOperationXOR( a , b )
+  local mask
+  local res = 0
+  for i = 7 , 0 , -1
+    do
+    res = MoveBit('L',res,1)
+    mask = MoveBit('L',1,i)
+    aa = BitOperationAND(a,mask)
+    bb = BitOperationAND(b,mask)
+
+    if aa == bb then
+      res = res + 0
+    else
+      res = res + 1
+    end
+
+  end
   return res
 end
 
