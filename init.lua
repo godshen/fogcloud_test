@@ -242,8 +242,8 @@ function _M.decode(payload)
       crcdata[i] = getnumber(i)
     end
 
-    --if CRC16(crcdata,DATALENGTH)==(getnumber(43)*256+getnumber(44)) then
-    if( true ) then
+    if CRC16(crcdata,DATALENGTH)==(getnumber(43)*256+getnumber(44)) then
+    --if( true ) then
       local head1 = string.sub(payload,1,1)
       local head2 = string.sub(payload,2,2)
 
