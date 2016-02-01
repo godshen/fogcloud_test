@@ -87,6 +87,7 @@ end
 function BitOperationOR( a , b )
   local res = 0
 
+
   for i=8,1,-1
     do
     res = MoveBit('L',res,1)
@@ -104,10 +105,10 @@ function BitOperationOR( a , b )
     if( ( aa==0 ) and ( bb==0) )then
       res = res + 0
       --print(res)
-      print(aa..'&'..bb..'->'..'0')
+      --print(aa..'&'..bb..'->'..'0')
     else
       res = res + 1
-      print(aa..'&'..bb..'->'..'1')
+      --print(aa..'&'..bb..'->'..'1')
     end
   end
   --print("end of and")
@@ -118,6 +119,9 @@ end
 function BitOperationXOR( a , b )
   local mask
   local res = 0
+  local aa
+  local bb
+  
   for i = 7 , 0 , -1
     do
     res = MoveBit('L',res,1)
@@ -225,13 +229,13 @@ function _M.decode(payload)
     strload = payload;
     packet['status'] = 'not'
 
-    
+    DATALENGTH = getnumber(3) * 256 + getnumber(4);
     local crcdata = {}
     for i=1,DATALENGTH,1
       do
       crcdata[i] = getnumber(i)
     end
-    DATALENGTH = getnumber(3) * 256 + getnumber(4);
+    
     --if CRC16( crcdata , DATALENGTH + 4 ) == (getnumber(43)*256+getnumber(44) ) then
     if( true ) then
       local head1 = string.sub(payload,1,1)
