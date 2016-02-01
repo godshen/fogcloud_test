@@ -231,9 +231,9 @@ function _M.decode(payload)
       do
       crcdata[i] = getnumber(i)
     end
-
-    if CRC16(crcdata,DATALENGTH)==(getnumber(43)*256+getnumber(44)) then
-    --if( true ) then
+    DATALENGTH = getnumber(3) * 256 + getnumber(4);
+    --if CRC16( crcdata , DATALENGTH + 4 ) == (getnumber(43)*256+getnumber(44) ) then
+    if( true ) then
       local head1 = string.sub(payload,1,1)
       local head2 = string.sub(payload,2,2)
 
@@ -252,6 +252,8 @@ function _M.decode(payload)
           do
           packet[ cmds[6+i/2] ] = getnumber(11+i) * 256 + getnumber(12+i)
         end
+        packet['crc0'] = CRC16( crcdata , DATALENGTH + 4 )
+        packet['crc1'] = ( getnumber(43)*256+getnumber(44) )
         packet['status'] = 'success'
 
       else
