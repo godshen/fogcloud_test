@@ -48,6 +48,10 @@ function utilCalcFCS( pBuf , len )
 
 	while (len ~= 0)
 		do
+<<<<<<< HEAD
+=======
+		rtrn = bit.bxor( rtrn , pBuf[l-len+1] )
+>>>>>>> d4082bd9c5a9a5b78808c8d4b40797265b9efd09
 		len = len - 1
 		rtrn = bit.bxor( rtrn , pBuf[l-len] )
 	end
