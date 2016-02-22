@@ -43,16 +43,15 @@ local cmds = {
 
 
 function utilCalcFCS( pBuf , len )
-  local rtrn = 0
-  local l = len
+	local rtrn = 0
+	local l = len
 
-  while (len ~= 0)
-  {
-    rtrn bit.bxor( rtrn , pBuf[l-len] )
-    len = len - 1
-  }
+	while (len ~= 0)
+		rtrn bit.bxor( rtrn , pBuf[l-len] )
+		len = len - 1
+	end
 
-  return rtrn;
+	return rtrn;
 end
 
 
