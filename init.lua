@@ -52,7 +52,7 @@ function utilCalcFCS( pBuf , len )
 		rtrn = bit.bxor( rtrn , pBuf[l-len] )
 	end
 
-	return rtrn;
+	return rtrn
 end
 
 
@@ -138,14 +138,14 @@ function _M.decode(payload)
     end
 
     local fcsarr={}
-    for i=1,10,1
+    for i=1,20,1
     	do
     	fcsarr[i]=i
     end
     local bittest = {}
     bittest['test1']=bit.bnot(8)
     bittest['test2']=bit.band(8,10)
-    bittest['fcs']=utilCalcFCS(fcsarr,10)
+    bittest['fcs']=utilCalcFCS(fcsarr,20)
     return Json(bittest)
 end
 
