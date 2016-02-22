@@ -43,7 +43,6 @@ local cmds = {
 
 
 function utilCalcFCS( pBuf , len )
-{
   local rtrn = 0
   local l = len
 
@@ -54,7 +53,7 @@ function utilCalcFCS( pBuf , len )
   }
 
   return rtrn;
-}
+end
 
 
 
