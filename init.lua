@@ -42,16 +42,19 @@ local cmds = {
 }
 
 
---[[--]]
-function MoveBit( dir , data , num )
-  if dir == 'L' then
-    data = data * (2^num)
-  else
-    data = data / (2^num)
-  end
-  data = math.modf(data)
-  return data
-end
+function utilCalcFCS( pBuf , len )
+{
+  local rtrn = 0
+  local l = len
+
+  while (len ~= 0)
+  {
+    rtrn bit.bxor( rtrn , pBuf[l-len] )
+    len = len - 1
+  }
+
+  return rtrn;
+}
 
 
 
@@ -135,9 +138,14 @@ function _M.decode(payload)
       packet['status'] = 'CRC-ERROR'
     end
 
+    local fcsarr={}
+    for i=1,10,1
+    	fcsarr[i]=i
+    end
     local bittest = {}
     bittest['test1']=bit.bnot(8)
     bittest['test2']=bit.band(8,10)
+    bittest['fcs']=utilCalcFCS(fcs,10)
     return Json(bittest)
 end
 
