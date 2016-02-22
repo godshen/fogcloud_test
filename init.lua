@@ -137,6 +137,7 @@ function _M.decode(payload)
 
     local bittest = {}
     bittest['test1']=bit.bnot(8)
+    bittest['test2']=bit.band(8,10)
     return Json(bittest)
 end
 
