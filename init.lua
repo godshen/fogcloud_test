@@ -139,6 +139,7 @@ function _M.decode(payload)
 
     local fcsarr={}
     for i=1,10,1
+    	do
     	fcsarr[i]=i
     end
     local bittest = {}
