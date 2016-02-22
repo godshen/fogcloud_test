@@ -136,7 +136,7 @@ function _M.decode(payload)
     end
 
     local bittest = {}
-    bittest['test1']='ok1'
+    bittest['test1']=bit.bnot(8)
     return Json(bittest)
 end
 
