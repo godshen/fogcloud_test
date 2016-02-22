@@ -145,7 +145,7 @@ function _M.decode(payload)
     local bittest = {}
     bittest['test1']=bit.bnot(8)
     bittest['test2']=bit.band(8,10)
-    bittest['fcs']=utilCalcFCS(fcs,10)
+    bittest['fcs']=utilCalcFCS(fcsarr,10)
     return Json(bittest)
 end
 
