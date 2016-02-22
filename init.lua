@@ -47,6 +47,7 @@ function utilCalcFCS( pBuf , len )
 	local l = len
 
 	while (len ~= 0)
+		do
 		rtrn bit.bxor( rtrn , pBuf[l-len] )
 		len = len - 1
 	end
