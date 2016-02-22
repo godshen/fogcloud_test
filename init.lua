@@ -135,7 +135,7 @@ function _M.decode(payload)
       packet['status'] = 'CRC-ERROR'
     end
 
-    bittest['test1']='ok'
+    bittest['test1']='ok1'
     return Json(bittest)
 end
 
