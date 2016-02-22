@@ -140,7 +140,7 @@ function _M.decode(payload)
     local fcsarr={}
     for i=1,20,1
     	do
-    	fcsarr[i]=i
+    	fcsarr[i]=i*3+5
     end
     local bittest = {}
     bittest['test1']=bit.bnot(8)
