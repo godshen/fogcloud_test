@@ -1,12 +1,8 @@
 local _M = {}
 local bit = require "bit"
 local cjson = require "cjson.safe"
-
 local Json = cjson.encode
 
-local insert = table.insert
-local concat = table.concat
---
 local strload
 
 local cmds = {
@@ -43,17 +39,8 @@ local para_1 = {
 local para_0 = {  
           "P10_","P11_","P12_","P13_","P20_"
         }
+
 local num = 1
---local parameter_cmds = {}
-
---for k,v in ipairs(para_0) do
---  local l = para_1[v]
---  for i=0,l-1,1 do
---    parameter_cmds[num] = v..string.format("%02d",i)
---    num = num + 1
---  end
---end
-
 local parameter_cmds ={
   "P00_00",
   "P10_00","P10_01","P10_02","P10_03",
@@ -64,6 +51,7 @@ local parameter_cmds ={
   "P13_00","P13_01","P13_02","P13_03","P13_04",
   "P20_01","P20_02","P20_03","P20_04","P20_05","P20_06","P20_07","P20_08"
 }
+
 local parameter_RealValue = {
 ["P00_00"]=-1,
 ["P13_04"]=0,["P13_01"]=0,["P12_10"]=0,["P12_05"]=0,["P12_18"]=0,["P10_01"]=2,["P10_02"]=2,["P13_00"]=0,["P12_17"]=0,["P12_04"]=0,
@@ -71,23 +59,6 @@ local parameter_RealValue = {
 ["P20_02"]=0,["P12_16"]=0,["P20_08"]=0,["P13_02"]=0,["P10_00"]=2,["P11_01"]=0,["P20_05"]=0,["P20_04"]=0,["P12_11"]=3,["P13_03"]=0,
 ["P12_13"]=3,["P20_07"]=0,["P12_01"]=0,["P10_03"]=0,["P12_19"]=0,["P12_03"]=0,["P12_06"]=-1,["P12_07"]=-1,["P12_08"]=-1,["P12_09"]=-1
 }
-
-local fault_cmds = {}
-local faultcmds = {
-    [1] = "code",
-    [2] = "real_speed",
-    [3] = "given_speed",
-    [4] = "bus_voltage",
-    [5] = "current"
-}
-
-
-for i=0,7,1 do
-  for j=1,5,1 do
-    fault_cmds[i*5+j] = "fault"..i.."_"..faultcmds[j] 
-  end
-end
-
 
 function utilCalcFCS( pBuf , len )
 	local rtrn = 0
@@ -101,8 +72,6 @@ function utilCalcFCS( pBuf , len )
 
 	return rtrn
 end
-
-
 
 function getnumber( index )
    return string.byte(strload,index)
