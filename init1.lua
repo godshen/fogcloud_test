@@ -14,6 +14,9 @@ local strchar = string.char
 local strload
 local DATALENGTH = 42
 
+local humanbeing = 1300000
+
+
 local cmds = {
   [0x00] = "head1",
   [0x01] = "head2",
